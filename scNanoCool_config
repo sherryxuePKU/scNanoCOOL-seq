@@ -1,0 +1,106 @@
+# Step_00 Prepare directory
+indir=$dir/00.raw_data
+trim_dir=$dir/01.trim
+bam_dir=$dir/02.bam
+meth_dir=$dir/03.meth
+tile_dir=$dir/04.tile
+NDR_dir=$dir/05.NDR
+cnv_dir=$dir/06.CNV
+snv_dir=$dir/07.SNV
+sv_dir=$dir/SV
+info_dir=$dir/Info
+
+### Software
+bin_dir=/gpfs1/tangfuchou_pkuhpc/tangfuchou_coe/xuexiaohui/software
+conda_dir=$bin_dir/miniconda3/bin
+PBAT_conda_dir=$bin_dir/miniconda3/envs/PBAT/bin
+cutadapt_exe=$conda_dir/cutadapt
+seqtk_exe=$conda_dir/seqtk
+#bismark_mm2=$bin_dir/Bismark-MM2/bismark
+bismark_mm2=$bin_dir/Download/Bismark-MM2/bismark
+samtools_exe=$bin_dir/samtools-1.9/bin/samtools
+minimap2_dir=$bin_dir/minimap2-2.18_x64-linux
+bismark_meth_extractor=$bin_dir/Bismark-MM2/bismark_methylation_extractor
+coverage2cytosine=$bin_dir/Bismark-MM2/coverage2cytosine
+NOMe_filtering_HCH=$bin_dir/Bismark-MM2/NOMe_filtering_HCH
+pigz=$conda_dir/pigz
+python3_exe=$conda_dir/python3
+python2_exe=$bin_dir/miniconda3/envs/py27/bin/python2
+wig2bw=$PBAT_conda_dir/wigToBigWig
+computeMatrix_exe=$conda_dir/computeMatrix
+plotProfile_exe=$conda_dir/plotProfile
+nanostat_exe=$conda_dir/NanoStat
+bgzip_exe=$conda_dir/bgzip
+tabix_exe=$conda_dir/tabix
+bedtools_exe=$PBAT_conda_dir/bedtools
+longshot_exe=$conda_dir/longshot
+bowtie_dir=$bin_dir/bowtie2/bowtie2-2.3.5
+methylpy_exe=$PBAT_conda_dir/methylpy
+# rscript_exe=$bin_dir/miniconda3/envs/R4.0/bin/Rscript
+rscript_exe=$conda_dir/Rscript
+freec_exe=$bin_dir/FREEC-11.5/src/freec
+perl_exe=$conda_dir/perl
+bamtools_exe=$conda_dir/bamtools
+cuteSV_exe=$PBAT_conda_dir/cuteSV
+longshot_exe=$conda_dir/longshot
+bedGraphToBigWig=$conda_dir/bedGraphToBigWig
+clubcpg_coverage=$bin_dir/miniconda3/envs/cluBCpG/bin/clubcpg-coverage
+clubcpg_cluster=$bin_dir/miniconda3/envs/cluBCpG/bin/clubcpg-cluster
+clubcpg_pdm=$bin_dir/miniconda3/envs/cluBCpG/bin/clubcpg-pdm
+clubcpg_python=$bin_dir/miniconda3/envs/cluBCpG/bin/python
+activate=$bin_dir/miniconda3/bin/activate
+pdfunite=$conda_dir/pdfunite
+
+### Script
+codedir=/gpfs1/tangfuchou_pkuhpc/tangfuchou_coe/xuexiaohui/script
+extract_bam=$codedir/extract_bam.py
+tile_pl=$codedir/pipeline/nanoMeth_xxh/Tile_Meth_nanoCool_v4.pl
+AbD_pl=$codedir/pipeline/nanoCool_xxh/AbsoluteDistance_NOMe.pl
+AbD_NDR_pl=$codedir/pipeline/nanoCool_xxh/AbsoluteDistance_NOMe_NDR.pl
+merge_mtx_r=$codedir/pipeline/nanoCool_xxh/CpGProfile_merge_v2.R
+findNDR=$codedir/pipeline/nanoCool_xxh/bulk_test2_v3p.py
+NDR_5GCH=$codedir/pipeline/nanoCool_xxh/NDR_tabix-5GCH.pl
+cut_NDR_support_dep=$codedir/pipeline/nanoCool_xxh/cut_NDR_support_dep.py
+GCH_matrix_py=$codedir/pipeline/nanoCool_xxh/generate_GCH_matrix_addCB.py
+tanghulu_py=$codedir/pipeline/nanoCool_xxh/PlotTanghulu.v2.py
+tanghulu_CGI_r=$codedir/pipeline/nanoCool_xxh/PlotTanghulu.CGI.R
+tanghulu_r=$codedir/pipeline/nanoCool_xxh/PlotTanghulu.R
+tanghulu_snv_r=$codedir/pipeline/nanoCool_xxh/PlotTanghulu.SNV.R
+
+### Database
+dbdir=/gpfs1/tangfuchou_pkuhpc/tangfuchou_coe/xuexiaohui/database
+bismark_db=$dbdir/hg38/Bismark
+bismark_mm2_db=$dbdir/hg38/Bismark_MM2
+bismark_mm2_contig_db=$dbdir/contig/K562/Bismark_MM2
+bismark_mm2_split_db=$dbdir/hg38/Bismark_MM2_split
+ref=$dbdir/hg38/Bismark/hg38.genome_lambda.fa
+barcode_list=$dbdir/hg38/HT_nanopore/barcode_sequence.txt
+# chrom_len=$dbdir/hg38/Annotation/hg38.genome.len
+genebody_bed=$dbdir/hg38/Annotation/GENCODE/hg38.gencode.p5.allGene.bed
+TSS_1k_bed=$dbdir/hg38/Annotation/GENCODE/hg38.gencode.p5.allGene.bed.TSS_up1500bp_down500bp.bed
+TSS_750_bed=$dbdir/hg38/Annotation/GENCODE/hg38.gencode.p5.allGene.bed.TSS_up750bp_down250bp.bed
+
+CGI_ref=$dbdir/hg38/Annotation/CGI/hg38.CGI.bed
+DHR_ref=$dbdir/hg38/Annotation/hg38.K562.DHR.bed
+WCG_bed=$dbdir/lambda/oligomatch/lambda.WCG.bed
+GCH_bed=$dbdir/lambda/oligomatch/lambda.GCH.bed
+# promoter_bed=$dbdir/hg38/Annotation/hg38.gencode.p5.allGene_promoter.bed
+freec_db=$dbdir/hg38/FREEC/C2T_ChrFile
+chr_len=$dbdir/hg38/FREEC/hg38.genome.len
+# WCG_CGI_ref=$dbdir/hg38/Annotation/hg38.genome.WCG_CGI.bed
+encode_K562_WCG_tile=$dbdir/hg38/Annotation/Encode_K562
+# win_ref=$dbdir/hg38/Annotation/hg38.genome.win300.bed
+# win_WCG_ref=$dbdir/hg38/Annotation/hg38.genome.win300.3X_WCG.bed
+annodir=$dbdir/hg38/Annotation/sub_group
+pELS_bed=$dbdir/hg38/Annotation/GRCh38_cCRE_pELS_K562.bed
+chrom_size=$dbdir/hg38/BWA/hg38.chrom.sizes
+chrom_size_contig=$bismark_mm2_contig_db/K562_translocation_contig.len
+# ICR_M=$dbdir/hg38/Annotation/known_imprinted_DMR.hg38.zyx.M.bin_300.bed
+# ICR_P=$dbdir/hg38/Annotation/known_imprinted_DMR.hg38.zyx.P.bin_300.bed
+ICR=$dbdir/hg38/Annotation/known_imprinted_DMR.hg38.zyx.win500_step200.bed
+
+### Parameter
+element='ALR Alu CGI ERV1 ERVK ERVL-MaLR ERVL Exon HCP ICP Intergenic Intragenic Intron L1 L2 LCP LINE LTR MIR Promoter SINE SVA'
+hg38_genome_size=2934860425
+WCG_site_num=28397110
+GCH_site_num=235107734
