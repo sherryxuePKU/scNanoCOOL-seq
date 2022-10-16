@@ -12,7 +12,7 @@ Source code of the sequencing method scNanoCOOL-seq and the manuscript ***XXX***
 
 ## Overview
 --------
-scNanoCOOL-seq is a combination of scCOOL-seq and nanopore, which enables the elongation of read length to 900 bp.
+scNanoCOOL-seq is a combination of scCOOL-seq and nanopore and has an average of read length to 900 bp.
 
 <p align="center"> 
 <img src="protocol.tif" style="width: 50%; height: 50%"/>​
