@@ -1,0 +1,104 @@
+#!/gpfs1/tangfuchou_pkuhpc/tangfuchou_coe/xuexiaohui/software/miniconda3/envs/cluBCpG/bin/python
+
+import os
+import logging
+import argparse
+from clubcpg.CalculateBinCoverage import CalculateCompleteBins
+
+DEBUG = False
+
+
+def str2bool(v):
+    if v.lower() == 'true':
+        return True
+    elif v.lower() == 'false':
+        return False
+    else:
+        raise argparse.ArgumentTypeError("Boolean value expected.")
+
+
+# Input params
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument("-a", "--input_bam_A",
+                        help="Input bam file, coordinate sorted with index present")
+arg_parser.add_argument("-r", "--input_fa",
+                        help="Input fa file, indexed with fai")
+arg_parser.add_argument("-o", "--output_dir",
+                        help="Output directory to save results, defaults to bam file loaction")
+arg_parser.add_argument("--bin_size", help="Size of bins to extract and analyze, default=100", default=100)
+arg_parser.add_argument("-n", "--num_processors",
+                        help="Number of processors to use for analysis, default=1",
+                        default=1)
+arg_parser.add_argument("-chr", "--chromosome",
+                        help="Chromosome to analyze, example: 'chr19', required", default=None)
+
+arg_parser.add_argument("--read1_5", help="integer, read1 5' m-bias ignore bp, default=0", default=0)
+arg_parser.add_argument("--read1_3", help="integer, read1 3' m-bias ignore bp, default=0", default=0)
+arg_parser.add_argument("--read2_5", help="integer, read2 5' m-bias ignore bp, default=0", default=0)
+arg_parser.add_argument("--read2_3", help="integer, read2 3' m-bias ignore bp, default=0", default=0)
+arg_parser.add_argument("--no_overlap", help="bool, remove any overlap between paired reads and stitch"
+                                             " reads together when possible, default=True",
+                        type=str2bool, const=True, default='True', nargs='?')
+
+if __name__ == "__main__":
+
+    # Extract arguments from command line and set as correct types
+    args = arg_parser.parse_args()
+
+    input_bam_file = args.input_bam_A
+    input_fa_file = args.input_fa
+    num_of_processors = int(args.num_processors)
+    bin_size = int(args.bin_size)
+    no_overlap = args.no_overlap
+
+    # Get the mbias inputs and adjust to work correctly, 0s should be converted to None
+    mbias_read1_5 = int(args.read1_5)
+    mbias_read1_3 = int(args.read1_3)
+    mbias_read2_5 = int(args.read2_5)
+    mbias_read2_3 = int(args.read2_3)
+
+
+    if args.chromosome:
+        chrom_of_interest = args.chromosome
+    else:
+        chrom_of_interest = None
+
+    # For now, this will be made required
+    assert chrom_of_interest, "Chromosome to analyze must be specified"
+
+    # Set output directory, or use bam file location if not specified
+    if args.output_dir:
+        BASE_DIR = args.output_dir
+    else:
+        BASE_DIR = os.path.dirname(input_bam_file)
+
+    # Create output dir if it doesnt exist
+    if not os.path.exists(BASE_DIR):
+        os.makedirs(BASE_DIR)
+
+    # Setup logging
+    log_file = os.path.join(BASE_DIR, "CompleteBins.{}.{}.log".format(os.path.basename(input_bam_file), chrom_of_interest))
+    print("Log file: {}".format(log_file), flush=True)
+    logging.basicConfig(filename=log_file, level=logging.DEBUG)
+
+
+    logging.info(args)
+
+    # Log run input params
+    logging.info("Input bam file: {}".format(input_bam_file))
+    logging.info("Input fa file: {}".format(input_fa_file))
+    logging.info("Chromosome specified: {}".format(chrom_of_interest))
+    logging.info("Bin size: {}".format(bin_size))
+    logging.info("Number of processors: {}".format(num_of_processors))
+    logging.info("Fix overlapping reads: {}".format(no_overlap))
+
+
+    logging.info("M bias inputs ignoring the following:\nread 1 5': {}bp\n"
+                 "read1 3': {}bp\nread2 5: {}bp\nread2 3': {}bp".format(mbias_read1_5, mbias_read1_3, mbias_read2_5, mbias_read2_3))
+
+    # Perform the analysis
+    calc = CalculateCompleteBins(input_bam_file,input_fa_file, bin_size, BASE_DIR, num_of_processors,
+                                 mbias_read1_5, mbias_read1_3, mbias_read2_5, mbias_read2_3)
+    output_file = calc.analyze_bins(chrom_of_interest)
+
+
