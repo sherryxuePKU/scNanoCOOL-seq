@@ -1,7 +1,7 @@
 scNanoCOOL-seq
 =========
 
-Source code of the sequencing method scNanoCOOL-seq and the manuscript ***XXX***.
+Source code of the sequencing method scNanoCOOL-seq and the manuscript ***scNanoCOOL-seq: a single-cell multi-omics sequencing method based on the third generation sequencing platform***.
 
 ## Table of contents
 
@@ -27,7 +27,7 @@ scNanoCOOL-seq is a combination of scCOOL-seq and nanopore and has an average of
 
 ## Data
 -------
-The raw data is accessible at GEO [xx](https://www.ncbi.nlm.nih.gov/geo). Parsed data is provided upon request.
+The raw data is accessible at SRA [PRJNA905717](https://www.ncbi.nlm.nih.gov/geo). Parsed data is provided upon request.
 
 ## Contact
 -------
