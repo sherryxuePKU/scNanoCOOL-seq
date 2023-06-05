@@ -75,6 +75,6 @@ Step3: generate the WCG matrix and plot the result
 
 2022/10/16
 
-## Last modification
+## Contact
 
 xxhui@stu.pku.edu.cn
