@@ -112,6 +112,6 @@ Step6: calc the signal of other omics
 
 2022/10/15
 
-## Last modification
+## Contact
 
 xxhui@stu.pku.edu.cn
