@@ -53,6 +53,6 @@ Run reduce_dimension.R in the Rstudio
 
 2022/10/15
 
-## Last modification
+## Contact
 
 xxhui@stu.pku.edu.cn
