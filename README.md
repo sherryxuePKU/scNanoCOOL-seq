@@ -4,11 +4,8 @@ scNanoCOOL-seq
 Source code of the sequencing method scNanoCOOL-seq and the manuscript ***scNanoCOOL-seq: a single-cell multi-omics sequencing method based on the third generation sequencing platform***.
 
 ## Table of contents
+**| [Overview](#overview) | [Content](#content) | [Data](#data)  | [Contact](#contact)  |**
 
-- [Overview](#overview)
-- [Content](#content)
-- [Data](#data)
-- [Contact](#contact)
 
 ## Overview
 --------
@@ -21,7 +18,7 @@ scNanoCOOL-seq is a combination of scCOOL-seq and nanopore and has an average of
 ## Content
 -------
 * `bin/`: functions used in each section from pre-processing to downstream analysis
-* `example/`: example data provided to reproduce the result
+* `data/`: example data provided to reproduce the result
 * `reference/`: necessary files as the reference
 * `vignettes/`: brief introductions for each section
 
