@@ -20,11 +20,11 @@ scNanoCOOL-seq technology mainly uses bisulfite conversion and single-barcode PC
 
 ## Data
 -------
-The raw data is accessible at SRA [PRJNA905717](https://www.ncbi.nlm.nih.gov/sra/PRJNA905717). Parsed data is provided upon request.
+The raw data is accessible at SRA BioProject [PRJNA905717](https://www.ncbi.nlm.nih.gov/sra/PRJNA905717). Parsed data is provided upon request.
 
 ## Citation
 --------
-scNanoCOOL-seq: a long-read single-cell sequencing method for multi-omics profiling within individual cells [PMID: 37700167](https://www.nature.com/articles/s41422-023-00873-5)
+Please cite [PMID: 37700167](https://www.nature.com/articles/s41422-023-00873-5)
 
 ## Contact
 -------
