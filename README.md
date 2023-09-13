@@ -24,7 +24,7 @@ The raw data is accessible at SRA [PRJNA905717](https://www.ncbi.nlm.nih.gov/sra
 
 ## Citation
 --------
-scNanoCOOL-seq: a long-read single-cell sequencing method for multi-omics profiling within individual cells [PMID: 37700167](DOI:10.1038/s41422-023-00873-5)
+scNanoCOOL-seq: a long-read single-cell sequencing method for multi-omics profiling within individual cells [PMID: 37700167](https://www.nature.com/articles/s41422-023-00873-5)
 
 ## Contact
 -------
