@@ -1,7 +1,7 @@
 scNanoCOOL-seq
 =========
 
-Source code of the sequencing method scNanoCOOL-seq and the manuscript ***scNanoCOOL-seq: a single-cell multi-omics sequencing method based on the third generation sequencing platform***.
+Source code for manuscript entitles ***scNanoCOOL-seq: a long-read single-cell sequencing method for multi-omics profiling within individual cells***.
 
 ## Overview
 --------
