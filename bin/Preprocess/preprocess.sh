@@ -26,22 +26,26 @@ function do_trim() {
     echo "Trim barcode begin at: "`date +%Y-%m-%d,%H:%M:%S`
     mkdir -p $trim_dir
     mkdir -p $indir/QC
-    input=$indir/$sp.fastq
+    input=$indir/$sp.fastq.gz
     tmp=$trim_dir/$sp.clean.tmp.fastq
     output=$trim_dir/$sp.clean.fastq
-    NanoStat_fastq=$indir/QC/$sp.raw.nanostat_report.txt
-    bc=`echo $sp | awk -F "[_.]" '{print $3}'`
-    bc_seq=`cat $barcode_list | awk -v a=$bc '$1==a {print $2}'`
-    #bc_seq_rev=`echo $bc_seq | tr a-z A-Z|tr ATCG TAGC | rev`
-    ## trim primer
-    $cutadapt_exe -j 4 -g $bc_seq --revcomp -e 0.2 -m 100 -o $tmp $input
-    ## filter length < 100
-    $seqtk_exe trimfq -b 6 -e 9 $tmp > $output &&\
-    rm -f $tmp
-    
-    $nanostat_exe --fastq $indir/$sp.fastq -t 4 >$NanoStat_fastq
+    NanoStat_raw=$indir/QC/$sp.raw.nanostat_report.txt
+    NanoStat_clean=$indir/QC/$sp.clean.nanostat_report.txt
 
-    # gzip $input $output
+    ## trim barcode
+    $cutadapt_exe -j 4 -a ${r1}...${r1_rev} -e 0.2 -m 100 -o $tmp $input
+    
+    ## trim random primer
+    $seqtk_exe trimfq -b 9 -e 9 -l 500 $tmp > $output && rm -f $tmp
+    
+    ## generate report
+    $nanostat_exe --fastq $input -t 4 >$NanoStat_raw
+    $nanostat_exe --fastq $output -t 4 >$NanoStat_clean
+
+    awk '{if(NR%4==1)print $1;else print $0}' $output \
+    | gzip -c > $output.gz && rm $output
+
+    gzip $input 
     echo "Trim barcode end at: "`date +%Y-%m-%d,%H:%M:%S`
 }
 
