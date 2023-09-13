@@ -24,7 +24,7 @@ scNanoCOOL-seq is a combination of scCOOL-seq and nanopore and has an average of
 
 ## Data
 -------
-The raw data is accessible at SRA [PRJNA905717](https://www.ncbi.nlm.nih.gov/geo). Parsed data is provided upon request.
+The raw data is accessible at SRA [PRJNA905717](https://www.ncbi.nlm.nih.gov/sra/PRJNA905717). Parsed data is provided upon request.
 
 ## Contact
 -------
