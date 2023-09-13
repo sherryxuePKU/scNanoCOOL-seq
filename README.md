@@ -8,7 +8,7 @@ Source code of the sequencing method scNanoCOOL-seq and the manuscript ***scNano
 scNanoCOOL-seq technology mainly uses bisulfite conversion and single-barcode PCR amplification strategies and finally obtained DNA fragments of approximately 900 bp in length. As shown in the Figure 1 below, the experimental process of scNanoCOOL-seq mainly includes: 1) cell lysis in a gentle way and in vitro methylation by DNA transferase M.CviPI enzyme, followed by nucleocytoplasmic separation of single cells; 2) the nucleus of single cells is processed with single-linker amplification after bisulfite treatment and PBAT-like library construction and is used for single-molecule sequencing on the Nanopore platform; 3) the cytoplasmic part of the single cell is used for scRNA-seq library construction (optimized STRT-seq). 
 
 <p align="center"> 
-<img src="protocol.png" style="width: 100%; height: 100%"/>​
+<img src="insert_pic2.png" style="width: 100%; height: 100%"/>​
 </p>
 
 ## Content
