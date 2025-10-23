@@ -1,0 +1,3 @@
+[submodule "bin/nano-bisulfite-haplotag"]
+	path = bin/nano-bisulfite-haplotag
+	url = https://github.com/xixueyu96/nano-bisulfite-haplotag.git
